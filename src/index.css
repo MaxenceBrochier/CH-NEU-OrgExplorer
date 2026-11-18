@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* Optimize scrollbar and rendering */
+html {
+  scroll-behavior: auto; /* Disable smooth scroll for better a11y + performance */
+  scroll-padding-top: 60px; /* Offset for sticky header */
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom animations for modern UI */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 200ms ease-in;
+}
+
+.animate-slide-in-down {
+  animation: slideInDown 200ms ease-out;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Optimize animations for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom scrollbar for performance */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/*
+ * Impression / export PDF.
+ * Les traits (fonds gris), les pointillés (dégradés de fond) et les fonds de pastilles sont des
+ * arrière-plans que le navigateur supprime par défaut à l'impression. On force leur rendu pour
+ * qu'ils apparaissent toujours dans le PDF, sans dépendre de la case « graphiques d'arrière-plan ».
+ */
+@media print {
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Les pastilles s'appuient sur un ring (box-shadow) que l'impression ignore :
+     on ajoute une bordure nette de la couleur du texte, sans décaler la mise en page. */
+  .tag-chip {
+    outline: 1px solid currentColor;
+    outline-offset: -1px;
+  }
+}

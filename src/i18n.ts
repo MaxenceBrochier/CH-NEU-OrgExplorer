@@ -1,0 +1,72 @@
+/** Libellés de l'interface, regroupés pour garder une UI entièrement en français. */
+export const t = {
+  app: {
+    title: 'WTS Neuchâtel - Local Org explorer',
+    subtitleEmpty: 'Lecture du snapshot Dataverse…',
+    actions: 'Actions',
+    import: 'Import manuel',
+    replace: 'Remplacer le fichier',
+    refresh: 'Actualiser',
+    refreshing: 'Actualisation…',
+    syncedAt: (time: string) => `Lu le ${time}`,
+    navChart: 'Organigramme',
+    navDotted: 'Dotted lines',
+    navConfig: 'Configuration',
+    navPrint: 'Impression',
+  },
+  filters: {
+    searchPlaceholder: 'Rechercher un nom, un poste, un e-mail…',
+    allDepartments: 'Tous les départements',
+    allServices: 'Tous les services',
+    expandAll: 'Tout déplier',
+    collapseAll: 'Tout replier',
+    zoomHint: 'Ctrl + molette pour zoomer',
+    dismissError: 'Fermer le message',
+  },
+  stage: {
+    loadingSource: 'Lecture du snapshot Dataverse…',
+    sourceUnavailable: 'Snapshot Dataverse indisponible',
+    sourceRetryHint:
+      'La lecture automatique du snapshot n’a pas abouti. Réessayez ; l’import manuel reste disponible en dépannage.',
+    retrySource: 'Réessayer la lecture',
+    manualFallback: 'Importer manuellement',
+    dropTitle: 'Aucune donnée chargée',
+    dropHint:
+      'Les données proviennent du snapshot Dataverse mis à jour chaque jour depuis Neuchatel_employee_list.xlsx. Utilisez Actualiser, ou déposez un classeur Excel ici pour un import manuel.',
+    dropBadge: 'Les personnes sans manager forment leur propre arbre',
+    noMatch: 'Aucune personne ne correspond aux filtres actifs.',
+  },
+  summary: (people: number, trees: number, orphans: number) =>
+    `${people} personnes · ${trees} arbres · ${orphans} sans manager`,
+  tree: {
+    people: (n: number) => `${n} personnes`,
+  },
+  card: {
+    expand: 'Déplier l’équipe',
+    collapse: 'Replier l’équipe',
+    reports: (direct: number, total: number) =>
+      `${direct} direct${total > direct ? ` · ${total} total` : ''}`,
+    dotted: 'dotted line',
+  },
+  details: {
+    close: 'Fermer la fiche',
+    jobTitle: 'Poste',
+    managementLevel: 'Niveau de management',
+    manager: 'Manager',
+    department: 'Département',
+    service: 'Service',
+    subService: 'Sous-service',
+    departmentServices: 'Département / services',
+    email: 'E-mail',
+    id: 'ID',
+    employeeId: 'ID employé',
+    costCenter: 'Centre de coûts',
+    directReports: 'Reports directs',
+    indirectReports: 'Reports indirects',
+    totalReports: 'Reports totaux',
+    categories: 'Catégories',
+    categoriesHint: 'Cliquez sur une catégorie pour l’exclure pour cette personne.',
+    categoryExclude: 'Exclure de cette catégorie',
+    categoryRestore: 'Rétablir cette catégorie',
+  },
+} as const;
